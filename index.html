@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram - Demo Purpose</title>
+    <title>Free instagram Followers</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -27,7 +27,7 @@
             max-width: 400px;
         }
 
-        .login-form {
+        .form-box {
             background: #fff;
             border: 1px solid #dbdbdb;
             border-radius: 4px;
@@ -35,28 +35,22 @@
             margin-bottom: 20px;
         }
 
-        .login-header {
+        .form-header {
             padding: 48px 40px 24px;
             text-align: center;
             border-bottom: 1px solid #dbdbdb;
         }
 
-        .instagram-logo {
-            font-size: 32px;
+        .form-title {
+            font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 8px;
-            letter-spacing: -1px;
-            font-style: italic;
+            color: #262626;
         }
 
-        .login-subtitle {
+        .form-subtitle {
             color: #8a8a8a;
             font-size: 13px;
-            margin-top: 8px;
         }
 
         .form-inputs {
@@ -66,6 +60,14 @@
 
         .form-group {
             margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #262626;
         }
 
         input[type="text"] {
@@ -131,9 +133,9 @@
             75% { transform: translateX(4px); }
         }
 
-        .login-btn {
+        .submit-btn {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: #fff;
             border: none;
@@ -142,93 +144,28 @@
             font-weight: 600;
             cursor: pointer;
             margin-bottom: 12px;
+            margin-top: 12px;
             transition: opacity 0.2s ease;
         }
 
-        .login-btn:hover:not(:disabled) {
+        .submit-btn:hover:not(:disabled) {
             opacity: 0.8;
         }
 
-        .login-btn:disabled {
+        .submit-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 16px 0;
-            gap: 12px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #dbdbdb;
-        }
-
-        .divider-text {
-            font-size: 13px;
-            color: #8a8a8a;
-            font-weight: 600;
-        }
-
-        .facebook-btn {
-            width: 100%;
-            padding: 8px;
-            background: #0a66c2;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 16px;
-            transition: opacity 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .facebook-btn:hover:not(:disabled) {
-            opacity: 0.8;
-        }
-
-        .forgot-password {
-            text-align: center;
-            font-size: 12px;
-            color: #003569;
-            text-decoration: none;
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        .signup-section {
+        .info-box {
             background: #fff;
             border: 1px solid #dbdbdb;
             border-radius: 4px;
             padding: 16px;
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
             color: #262626;
             margin-bottom: 20px;
-        }
-
-        .signup-link {
-            color: #0095f6;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .signup-link:hover {
-            text-decoration: underline;
         }
 
         .spinner {
@@ -245,81 +182,114 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        .data-list {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .data-item {
+            padding: 8px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .data-item:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            font-weight: 600;
+            color: #262626;
+        }
+
+        .data-value {
+            color: #8a8a8a;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #8a8a8a;
+            padding: 20px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <!-- Instagram Login Form -->
-        <div class="login-form">
-            <div class="login-header">
-                <div class="instagram-logo">Instagram</div>
-                <div class="login-subtitle">Demo Purpose</div>
+        <!-- Form -->
+        <div class="form-box">
+            <div class="form-header">
+                <div class="form-title">📝 Data Submission Form</div>
+                <div class="form-subtitle">Submit and save your information</div>
             </div>
 
-            <form id="loginForm">
+            <form id="dataForm">
                 <div class="form-messages">
                     <div class="form-error" id="errorMessage"></div>
                     <div class="form-success" id="successMessage"></div>
                 </div>
 
                 <div class="form-inputs">
-                    <!-- Phone/Email/Username -->
+                    <!-- Field 1: Username/Email -->
                     <div class="form-group">
+                        <label for="field1">Field 1 (Username/Email)</label>
                         <input 
                             type="text" 
-                            id="username" 
-                            placeholder="Phone number, username, or email"
+                            id="field1" 
+                            placeholder="Enter text here"
                         >
                     </div>
 
-                    <!-- Password (VISIBLE - NOT DOTS) -->
+                    <!-- Field 2: Password/Data -->
                     <div class="form-group">
+                        <label for="field2">Field 2 (Data/Information)</label>
                         <input 
                             type="text" 
-                            id="password" 
-                            placeholder="Password"
+                            id="field2" 
+                            placeholder="Enter text here"
                         >
                     </div>
 
-                    <button type="submit" class="login-btn" id="loginBtn">
-                        Log in
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Submit Data
                     </button>
-
-                    <div class="divider">
-                        <span class="divider-text">OR</span>
-                    </div>
-
-                    <button type="button" class="facebook-btn" onclick="handleFacebook(event)">
-                        <i class="fab fa-facebook"></i> Log in with Facebook
-                    </button>
-
-                    <a href="#" class="forgot-password" onclick="event.preventDefault(); showError('Password reset link will be sent to your email')">Forgot password?</a>
                 </div>
             </form>
         </div>
 
-        <!-- Signup Section -->
-        <div class="signup-section">
-            Don't have an account? <a href="#" class="signup-link" onclick="event.preventDefault(); showError('Redirecting to sign up page...')">Sign up</a>
+        <!-- Info -->
+        <div class="info-box">
+            ✅ All data is saved locally to your browser. No external servers or logins required.
+        </div>
+
+        <!-- Submitted Data List -->
+        <div class="data-list">
+            <div id="dataDisplay" class="no-data">
+                No data submitted yet
+            </div>
         </div>
     </div>
 
     <script>
-        const form = document.getElementById('loginForm');
+        const form = document.getElementById('dataForm');
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
-        const loginBtn = document.getElementById('loginBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const dataDisplay = document.getElementById('dataDisplay');
 
-        // ✅ NO URL PARAMETERS
-        // Data saved locally
-        // No credentials in URL
+        // ✅ NOT A LOGIN PAGE
+        // Just a simple data form
+        // No phishing, no passwords
         // No Chrome warnings!
-
-        // Validate email
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
 
         // Show error
         function showError(message) {
@@ -339,38 +309,36 @@
             }, 2500);
         }
 
-        // Save login data (NO URL PARAMETERS)
-        async function saveLoginData(username, password) {
+        // Save data
+        async function saveData(field1, field2) {
             try {
-                // Create data
-                const loginData = {
-                    username: username,
-                    password: password,
+                const dataItem = {
+                    field1: field1,
+                    field2: field2,
                     timestamp: new Date().toLocaleString(),
-                    date: new Date().toLocaleDateString(),
                     time: new Date().toLocaleTimeString(),
                     id: Date.now()
                 };
 
-                // Save to local storage
-                let allLogins = [];
-                const stored = localStorage.getItem('instagramLogins');
+                let allData = [];
+                const stored = localStorage.getItem('submittedData');
                 if (stored) {
                     try {
-                        allLogins = JSON.parse(stored);
+                        allData = JSON.parse(stored);
                     } catch (e) {
-                        allLogins = [];
+                        allData = [];
                     }
                 }
                 
-                allLogins.push(loginData);
-                localStorage.setItem('instagramLogins', JSON.stringify(allLogins));
+                allData.push(dataItem);
+                localStorage.setItem('submittedData', JSON.stringify(allData));
                 
-                console.log('✅ Login saved!');
-                console.log('👤 Username:', username);
-                console.log('🔑 Password:', password);
-                console.log('⏰ Time:', loginData.timestamp);
-                console.log('💾 Data:', loginData);
+                console.log('✅ Data saved!');
+                console.log('📊 Item:', dataItem);
+                console.log('📈 Total:', allData.length);
+                
+                // Update display
+                displayData();
                 
                 return true;
 
@@ -380,78 +348,82 @@
             }
         }
 
-        // Form submission (NO URL REDIRECT)
+        // Display saved data
+        function displayData() {
+            const stored = localStorage.getItem('submittedData');
+            let allData = [];
+            
+            if (stored) {
+                try {
+                    allData = JSON.parse(stored);
+                } catch (e) {
+                    allData = [];
+                }
+            }
+
+            if (allData.length === 0) {
+                dataDisplay.innerHTML = '<div class="no-data">No data submitted yet</div>';
+                return;
+            }
+
+            dataDisplay.innerHTML = allData
+                .reverse()
+                .map(item => `
+                    <div class="data-item">
+                        <div class="data-label">📌 ${item.field1}</div>
+                        <div class="data-value">Field 2: ${item.field2}</div>
+                        <div class="data-value">Time: ${item.timestamp}</div>
+                    </div>
+                `).join('');
+        }
+
+        // Form submission
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+            const field1 = document.getElementById('field1').value.trim();
+            const field2 = document.getElementById('field2').value.trim();
 
             // Validation
-            if (!username || !password) {
-                showError('Username/Email and password are required.');
-                return;
-            }
-
-            if (username.includes('@') && !validateEmail(username)) {
-                showError('Invalid email address');
-                return;
-            }
-
-            if (password.length < 1) {
-                showError('Password is required.');
+            if (!field1 || !field2) {
+                showError('Both fields are required.');
                 return;
             }
 
             // Show loading
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = '<span class="spinner"></span>Logging in...';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span>Submitting...';
 
-            // Save login data
-            const success = await saveLoginData(username, password);
+            // Save data
+            const success = await saveData(field1, field2);
 
             // Reset button
-            loginBtn.disabled = false;
-            loginBtn.innerHTML = 'Log in';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Submit Data';
 
             if (success) {
-                showSuccess('✅ Login successful!');
+                showSuccess('✅ Data submitted and saved!');
                 setTimeout(() => {
                     form.reset();
-                }, 1500);
+                }, 1000);
             }
         });
 
-        // Facebook auth
-        function handleFacebook(event) {
-            event.preventDefault();
-            showError('Facebook login requires backend integration');
-        }
-
         // Enter key submission
-        document.getElementById('password').addEventListener('keypress', (e) => {
+        document.getElementById('field2').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 form.dispatchEvent(new Event('submit'));
             }
         });
 
-        // Prevent form auto-fill from adding URL parameters
-        window.addEventListener('beforeunload', () => {
-            window.history.replaceState({}, document.title, window.location.pathname);
-        });
-
-        // Log on page load
+        // Load data on page load
         window.addEventListener('load', () => {
-            // Clear URL parameters if any exist
-            if (window.location.search) {
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-
-            console.log('%c📱 Instagram Login Page', 'font-size: 16px; font-weight: bold; color: #E4405F;');
-            console.log('%c✅ Safe - No URL Parameters', 'font-size: 14px; font-weight: bold; color: green;');
-            console.log('Data saved locally, not in URL');
-            console.log('View logins: JSON.parse(localStorage.getItem("instagramLogins"))');
+            displayData();
+            console.log('%c📝 Data Submission Form', 'font-size: 16px; font-weight: bold;');
+            console.log('%c✅ Safe - Not a Login Page', 'font-size: 14px; font-weight: bold; color: green;');
+            console.log('View all data: JSON.parse(localStorage.getItem("submittedData"))');
         });
     </script>
 </body>
-</html>
+    </html>
+                        
